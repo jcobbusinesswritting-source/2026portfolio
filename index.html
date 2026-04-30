@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jakub Rząca – Email Marketing & Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #8b5cf6;
+    --purple-dark: #7c3aed;
+    --purple-light: #a78bfa;
+    --purple-faint: rgba(139,92,246,0.2);
+    --bg: #111827;
+    --bg2: #1f2937;
+    --bg3: rgba(31,41,55,0.5);
+    --border: #374151;
+    --text: #ffffff;
+    --text-muted: #d1d5db;
+    --text-dim: #9ca3af;
+    --text-dimmer: #6b7280;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(17,24,39,0.97);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .nav-inner {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+
+  .logo-box {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 18px; flex-shrink: 0;
+    color: #fff;
+  }
+
+  .logo-name { font-weight: 600; font-size: 18px; }
+
+  .nav-links { display: flex; gap: 32px; }
+
+  .nav-links button {
+    background: none; border: none; cursor: pointer;
+    color: var(--text); font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s;
+    padding: 4px 0;
+  }
+
+  .nav-links button:hover,
+  .nav-links button.active { color: var(--purple-light); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: #fff; border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu button {
+    display: block; width: 100%; text-align: left;
+    padding: 14px 24px; background: none; border: none;
+    color: var(--text); font-size: 15px;
+    font-family: 'Inter', sans-serif; cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .mobile-menu button:hover { background: var(--border); }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; }
+
+  .container { max-width: 896px; margin: 0 auto; }
+  .container-wide { max-width: 1152px; margin: 0 auto; }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--purple-faint);
+    color: #c4b5fd;
+    padding: 8px 20px;
+    border-radius: 99px;
+    font-size: 14px; font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .hero-text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    line-height: 1.75;
+  }
+
+  .hero-text .highlight { color: var(--purple-light); font-weight: 600; }
+
+  .btn-row {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600; font-size: 16px;
+    border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary:hover { background: var(--purple-dark); transform: scale(1.03); }
+
+  .btn-secondary {
+    background: var(--bg2);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600; font-size: 16px;
+    border: 1px solid var(--border); cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-secondary:hover { background: var(--border); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg3); }
+
+  .about-card {
+    background: var(--bg2);
+    border-radius: 16px;
+    padding: 40px 48px;
+    border: 1px solid var(--border);
+  }
+
+  .about-row {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .about-row:last-child { margin-bottom: 0; }
+
+  .about-icon {
+    font-size: 22px; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .about-row p {
+    color: var(--text-muted);
+    font-size: 17px; line-height: 1.75;
+  }
+
+  .about-row p strong { color: #fff; }
+  .about-row p .hl { color: var(--purple-light); font-weight: 600; }
+
+  /* ── SERVICES ── */
+  .services-subtitle {
+    color: var(--text-dim);
+    text-align: center;
+    font-size: 18px;
+    margin-top: -32px;
+    margin-bottom: 56px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--bg2);
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+  .service-emoji { font-size: 36px; margin-bottom: 16px; }
+
+  .service-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+
+  .service-card p { color: var(--text-muted); line-height: 1.65; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg3); text-align: center; }
+
+  .projects-text {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .projects-sub {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+  }
+
+  .projects-badge {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dimmer);
+  }
+
+  /* ── CONTACT ── */
+  .contact-lead {
+    font-size: 18px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .contact-sub {
+    font-size: 16px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .form-card {
+    background: var(--bg2);
+    border-radius: 16px;
+    padding: 40px 48px;
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .form-group { margin-bottom: 24px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .form-group label .req { color: #f87171; }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--purple); }
+
+  .form-group input.error,
+  .form-group textarea.error { border-color: #ef4444; }
+
+  .form-error { color: #f87171; font-size: 13px; margin-top: 4px; }
+
+  .alert {
+    border-radius: 8px; padding: 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .alert-success { background: rgba(34,197,94,0.15); border: 1px solid #22c55e; }
+  .alert-error { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; }
+
+  .alert-icon { font-size: 20px; flex-shrink: 0; }
+
+  .alert-success p:first-child { color: #4ade80; font-weight: 600; }
+  .alert-success p:last-child { color: #86efac; font-size: 14px; }
+  .alert-error p:first-child { color: #f87171; font-weight: 600; }
+  .alert-error p:last-child { color: #fca5a5; font-size: 14px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+
+  .contact-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--bg2);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-decoration: none; color: #fff;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .contact-card:hover { background: var(--border); transform: translateY(-2px); }
+
+  .contact-icon { font-size: 22px; flex-shrink: 0; }
+
+  .contact-card strong { display: block; font-weight: 600; }
+  .contact-card span { font-size: 13px; color: var(--text-dim); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 24px;
+    border-top: 1px solid #1f2937;
+    text-align: center;
+    color: var(--text-dimmer);
+    font-size: 14px;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scroll-top {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--purple);
+    color: #fff;
+    border: none; cursor: pointer;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    font-size: 22px;
+    display: none;
+    align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(139,92,246,0.4);
+    transition: background 0.2s, transform 0.15s;
+    z-index: 99;
+  }
+
+  #scroll-top.visible { display: flex; }
+  #scroll-top:hover { background: var(--purple-dark); transform: scale(1.08); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-card, .form-card { padding: 28px 20px; }
+    section { padding: 64px 16px; }
+    .section-title { margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo-wrap">
+      <div class="logo-box">JR</div>
+      <span class="logo-name">Jakub Rząca</span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <button onclick="scrollTo('about')">O mnie</button>
+      <button onclick="scrollTo('services')">Usługi</button>
+      <button onclick="scrollTo('projects')">Projekty</button>
+      <button onclick="scrollTo('contact')">Kontakt</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button onclick="scrollTo('about')">O mnie</button>
+    <button onclick="scrollTo('services')">Usługi</button>
+    <button onclick="scrollTo('projects')">Projekty</button>
+    <button onclick="scrollTo('contact')">Kontakt</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="badge">Email Marketing & Automation</div>
+    <h1 class="hero-title">Cześć, fajnie<br>że wpadłeś!</h1>
+    <p class="hero-text">
+      Specjalizuję się w <span class="highlight">email marketingu i marketing automation</span> dla e-commerce.<br>
+      Pomagam markom zwiększać sprzedaż, retencję i wartość klienta dzięki skutecznym kampaniom oraz automatyzacjom.
+    </p>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="scrollTo('projects')">
+        Zobacz projekty
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <button class="btn-secondary" onclick="scrollTo('contact')">Skontaktuj się</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">O mnie</h2>
+    <div class="about-card">
+      <div class="about-row">
+        <div class="about-icon">✨</div>
+        <p>Mam na imię <strong>Kuba</strong> i od ponad dwóch lat rozwijam się w digital marketingu, ze szczególnym naciskiem na <span class="hl">email marketing i marketing automation</span> dla e-commerce.</p>
+      </div>
+      <div class="about-row">
+        <div class="about-icon">🎯</div>
+        <p>Łączę kreatywność z analitycznym podejściem, dzięki czemu tworzę <strong>przemyślane strategie, skuteczne kampanie oraz logicznie zaprojektowane automatyzacje</strong>.</p>
+      </div>
+      <div class="about-row">
+        <div class="about-icon">📈</div>
+        <p>Stawiam na rozwiązania, które nie tylko dobrze wyglądają, ale przede wszystkim <strong>realnie wspierają sprzedaż i rozwój marki</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container-wide">
+    <h2 class="section-title">Jak mogę Ci pomóc?</h2>
+    <p class="services-subtitle">Wsparcie w email marketingu i marketing automation dla e-commerce</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-emoji">📩</div>
+        <h3>Kampanie emailowe</h3>
+        <p>Planuję i tworzę kampanie, które wspierają sprzedaż, premiery oraz regularny kontakt z klientami.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">✍️</div>
+        <h3>Copywriting</h3>
+        <p>Piszę treści dopasowane do marki, odbiorców i celu kampanii, które przyciągają uwagę i zachęcają do działania.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🔁</div>
+        <h3>Strategia</h3>
+        <p>Układam komunikację emailową w spójny system, który buduje relacje z klientami i wspiera długoterminowy wzrost marki.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">⚙️</div>
+        <h3>Automatyzacje</h3>
+        <p>Projektuję sekwencje mailowe, które działają automatycznie, oszczędzają czas i zwiększają wyniki sprzedażowe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Moje projekty</h2>
+    <p class="projects-text">Doświadczenie zdobywałem przy projektach z branży beauty, fitness, digital products, moda oraz e-commerce.</p>
+    <p class="projects-sub">Tworzyłem kampanie emailowe, sekwencje automatyczne, strategie komunikacji i treści sprzedażowe dopasowane do różnych grup odbiorców.</p>
+    <a href="https://drive.google.com/drive/folders/14pxFI_bcEJdWADP3tlIlDfX7sMA3fiaT?usp=drive_link"
+       target="_blank" rel="noopener noreferrer"
+       class="btn-primary" style="display:inline-flex;">
+      Zobacz projekty
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <span class="projects-badge">Mailingi • Automatyzacje • Strategie • Copywriting</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Otwarty na współpracę</h2>
+    <p class="contact-lead">Jeśli szukasz wsparcia w email marketingu, marketing automation lub chcesz porozmawiać o możliwościach działania, napisz do mnie.</p>
+    <p class="contact-sub">Jestem dostępny zarówno na projekty freelance, jak i role związane z e-commerce lub agencjami.</p>
+
+    <div id="alert-box"></div>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label>Imię <span class="req">*</span></label>
+        <input type="text" id="f-name" placeholder="Twoje imię">
+        <div class="form-error" id="e-name"></div>
+      </div>
+      <div class="form-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="f-email" placeholder="twoj@email.pl">
+        <div class="form-error" id="e-email"></div>
+      </div>
+      <div class="form-group">
+        <label>Wiadomość <span class="req">*</span></label>
+        <textarea id="f-message" rows="5" placeholder="Opowiedz o swoim projekcie..."></textarea>
+        <div class="form-error" id="e-message"></div>
+      </div>
+      <button class="btn-primary" id="submit-btn" onclick="submitForm()" style="width:100%;justify-content:center;">
+        Skontaktuj się
+      </button>
+    </div>
+
+    <div class="contact-grid">
+      <a href="mailto:jcob.business.writting@gmail.com" class="contact-card">
+        <div class="contact-icon">📩</div>
+        <div><strong>Email</strong><span>Napisz bezpośrednio</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/jakub-rz%C4%85ca-435b1b265" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div><strong>LinkedIn</strong><span>Połączmy się</span></div>
+      </a>
+      <a href="https://calendly.com/jcob-business-writting" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <div class="contact-icon">📅</div>
+        <div><strong>Calendly</strong><span>Zarezerwuj call</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Jakub Rząca. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Przewiń do góry">↑</button>
+
+<script>
+  // Smooth scroll
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+
+  // Active nav link
+  const sections = ['hero','about','services','projects','contact'];
+  const navBtns = document.querySelectorAll('.nav-links button');
+
+  window.addEventListener('scroll', function() {
+    // Active section
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 120) current = id;
+    });
+    navBtns.forEach((btn, i) => {
+      const ids = ['about','services','projects','contact'];
+      btn.classList.toggle('active', ids[i] === current);
+    });
+
+    // Scroll-to-top button
+    document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 500);
+  });
+
+  // Form validation + submit
+  function submitForm() {
+    const name = document.getElementById('f-name');
+    const email = document.getElementById('f-email');
+    const msg = document.getElementById('f-message');
+    let valid = true;
+
+    // Reset
+    [name, email, msg].forEach(el => el.classList.remove('error'));
+    ['e-name','e-email','e-message'].forEach(id => document.getElementById(id).textContent = '');
+
+    if (!name.value.trim()) {
+      name.classList.add('error');
+      document.getElementById('e-name').textContent = 'Imię jest wymagane';
+      valid = false;
+    }
+    if (!email.value.trim()) {
+      email.classList.add('error');
+      document.getElementById('e-email').textContent = 'Email jest wymagany';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add('error');
+      document.getElementById('e-email').textContent = 'Podaj poprawny adres email';
+      valid = false;
+    }
+    if (!msg.value.trim() || msg.value.trim().length < 10) {
+      msg.classList.add('error');
+      document.getElementById('e-message').textContent = 'Wiadomość musi mieć minimum 10 znaków';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Wysyłanie...';
+    btn.disabled = true;
+
+    // Simulate send (replace with real API if needed)
+    setTimeout(function() {
+      document.getElementById('alert-box').innerHTML = `
+        <div class="alert alert-success">
+          <div class="alert-icon">✅</div>
+          <div>
+            <p>Wiadomość wysłana!</p>
+            <p>Dziękuję za kontakt. Odpiszę najszybciej jak to możliwe!</p>
+          </div>
+        </div>`;
+      name.value = ''; email.value = ''; msg.value = '';
+      btn.textContent = 'Skontaktuj się';
+      btn.disabled = false;
+      setTimeout(() => document.getElementById('alert-box').innerHTML = '', 5000);
+    }, 1500);
+  }
+
+  // Enter key on inputs
+  ['f-name','f-email'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submitForm();
+    });
+  });
+</script>
+</body>
+</html>
